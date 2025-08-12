@@ -1,0 +1,126 @@
+import random
+import string
+
+def calculator():
+    num1 = float(input('Enter the first number: '))
+    num2 = float(input('Enter the second number: '))
+
+    print('Choose the operation you need: +, -, *, /')
+    operation = input('Enter the operation: ')
+
+    if operation == '+':
+        result = num1 + num2
+    elif operation == '-':
+        result = num1 - num2
+    elif operation == '*':
+        result = num1 * num2
+    elif operation == '/':
+        if num2 != 0:
+            result = num1 / num2
+        else:
+            result = 'Error: Division by zero is not allowed'
+    else:
+        result = 'Invalid operation'
+
+    print('Result is:', result)
+
+
+def number_guessing_game():
+    number_to_guess = random.randint(1, 100)
+    while True:
+        guess = int(input("Guess a number between 1 and 100: "))
+        if guess < number_to_guess:
+            print("Too low! Try again.")
+        elif guess > number_to_guess:
+            print("Too high! Try again.")
+        else:
+            print("🎉 Congratulations! You guessed it!")
+            break
+
+
+def password_generator():
+    length = int(input("Enter password length: "))
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for _ in range(length))
+    print("Generated Password:", password)
+
+
+def rock_paper_scissors():
+    print("Choices: r, p, s: r,p,s")
+    user_choice = input("Enter your choice: ").lower()
+    computer_choice = random.choice(["r", "p", "s"])
+    print("Computer chose:", computer_choice)
+
+    if user_choice == computer_choice:
+        result = "It's a tie!"
+    elif (user_choice == "r" and computer_choice == "s") or \
+         (user_choice == "p" and computer_choice == "r") or \
+         (user_choice == "s" and computer_choice == "p"):
+        result = "You win! 🥳🥳"
+    else:
+        result = "You lose! 🚽🚽"
+    print(result)
+
+
+def even_or_odd():
+    number = int(input("Enter a number: "))
+    if number % 2 == 0:
+        print("Even number")
+    else:
+        print("Odd number")
+
+
+def todo_list():
+    tasks = []
+    while True:
+        print("\nTo-Do List Menu: 1. Add Task  2. View Tasks  3. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            task = input("Enter a task: ")
+            tasks.append(task)
+            print("Task added!")
+        elif choice == "2":
+            if not tasks:
+                print("No tasks yet!")
+            else:
+                print("\nYour Tasks:")
+                for i, t in enumerate(tasks, start=1):
+                    print(f"{i}. {t}")
+        elif choice == "3":
+            print("Exiting To-Do List...")
+            break
+        else:
+            print("Invalid choice! Try again.")
+
+
+# Main Menu
+while True:
+    print("\n===== Mini Project Hub =====")
+    print("1. Calculator")
+    print("2. Number Guessing Game")
+    print("3. Password Generator")
+    print("4. Rock, Paper, Scissors")
+    print("5. Even or Odd Checker")
+    print("6. To-Do List")
+    print("7. Exit")
+
+    choice = input("Choose a project: ")
+
+    if choice == "1":
+        calculator()
+    elif choice == "2":
+        number_guessing_game()
+    elif choice == "3":
+        password_generator()
+    elif choice == "4":
+        rock_paper_scissors()
+    elif choice == "5":
+        even_or_odd()
+    elif choice == "6":
+        todo_list()
+    elif choice == "7":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice! Please try again.")
